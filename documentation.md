@@ -67,3 +67,4 @@ graph TD
 - **Backend Logic**: Python
 - **AI/ML**: Groq (LLM), HuggingFace (Embeddings)
 - **Database**: FAISS (Local Vector Search)
+
