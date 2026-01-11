@@ -107,4 +107,7 @@ The application will open in your default browser at `http://localhost:8501`.
 
 * **Hybrid Search**: Combine keyword search (BM25) with vector search for better precision.
 * **Multi-URL Support**: Allow chatting with a collection of websites.
-* **Persistent Database**: Migrate to ChromaDB or Pinecone for persistent storage across reboots.
+* **Persistent Database**
+* **Guardrails**:* **Input Validation**: Implement NeMo Guardrails or Llama Guard to filter out malicious or irrelevant queries before they reach the LLM.
+* **Output Constraints**: Currently, we use strict prompt engineering ("Answer using only this context...") to prevent hallucinations. Future versions could validate the output format or check for PII leakage programmatically.: Migrate to ChromaDB or Pinecone for persistent storage across reboots.
+
