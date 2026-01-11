@@ -16,6 +16,23 @@ The system follows a standard RAG pipeline:
 6. **Retrieval**: When a User asks a question, the system finds the most relevant chunks from the store.
 7. **Generation**: The `Groq` LLM receives the chunks + user question + conversation history and generates a context-aware answer.
 
+```mermaid
+graph TD
+    A[User Inputs URL] -->|Fetch & Clean| B(Web Scraper)
+    B -->|Raw Text| C{Vector Store Exists?}
+    C -- No --> D[Text Chunking]
+    D --> E[Generate Embeddings]
+    E --> F[(FAISS Vector DB)]
+    C -- Yes --> F
+  
+
+    G[User Asks Question] -->|Embed Query| H[Vector Search]
+    F -->|Retrieve Top-K Chunks| H
+    H -->|Context + Query + History| I[Groq LLM]
+    I --> J[Final Answer]
+```
+
+
 ## 3. Frameworks Used
 
 * **Streamlit**: For the web-based user interface.
@@ -110,4 +127,5 @@ The application will open in your default browser at `http://localhost:8501`.
 * **Persistent Database**
 * **Guardrails**:* **Input Validation**: Implement NeMo Guardrails or Llama Guard to filter out malicious or irrelevant queries before they reach the LLM.
 * **Output Constraints**: Currently, we use strict prompt engineering ("Answer using only this context...") to prevent hallucinations. Future versions could validate the output format or check for PII leakage programmatically.: Migrate to ChromaDB or Pinecone for persistent storage across reboots.
+
 
