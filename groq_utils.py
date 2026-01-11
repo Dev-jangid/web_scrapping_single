@@ -4,7 +4,11 @@ def generate_chat_response(client, user_input, context,history=[]):    # history
     messages = [
         {
             "role": "system",
-            "content": f"Context: {context}\n\nTask: Answer using only the context above. If the answer is not present, say exactly like in one line 'The answer is not available on the provided website'. Be concise."
+            "content": f"""Context: {context}\n\nTask: Answer using only the context above. If the answer is not present, say exactly like in one line 'The answer is not available on the provided website'. 
+            Be concise.
+            Do NOT use any prior knowledge or assumptions."""
+
+            
         },
         {
             "role": "user",
@@ -28,6 +32,7 @@ def generate_chat_response(client, user_input, context,history=[]):    # history
         max_tokens=MAX_TOKENS
     )
     return chat_completion.choices[0].message.content.strip()
+
 
 
 
